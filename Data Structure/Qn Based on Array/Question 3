@@ -1,0 +1,10 @@
+#Q3) Create a list of all odd numbers between 1 and a max number.
+#Max number is something you need to take from a user using input() function.
+
+#Solution:
+n = int(input("Enter the max number: "))
+List = []
+for i in range(1,(n+1)):
+    if(i%2==1):
+        List.append(i)
+print(List)
