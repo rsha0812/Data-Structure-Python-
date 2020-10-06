@@ -1,0 +1,47 @@
+#Q2)   
+#  Let us say your expense for every month are listed below,
+# 	1. January -  2200
+#  	2. February - 2350
+#     3. March - 2600
+#     4. April - 2130
+#     5. May - 2190
+#
+# Create a list to store these monthly expenses and using that find out,
+
+#Solution:
+
+month=['jan','feb','march','april','may']
+exp =[2200,2350,2600,2130,2190]
+
+# #1) Extra dollars spent in Feb as compared to january:
+
+# extra= exp[1]-exp[0]
+# print(extra)
+
+# #2)Total expense in first quarter(in 1st three month):
+
+# TotQ = exp[0]+exp[1]+exp[2]
+# print(TotQ)
+
+#3) Find out if you spent exactly 2000 dollars in any month
+# for i in exp:
+#     flag=0
+#     if(i==2600):
+#         pass
+# if(flag==1):
+#     print("True")
+# else:
+#     print("False") ## Doubt 
+
+#4)June month just finished and your expense is 1980 dollar. Add this item to our monthly expense list
+# exp.append(1980)
+# print(exp)
+
+#5) You returned an item that you bought in a month of April and
+# got a refund of 200$. Make a correction to your monthly expense list
+# based on this
+
+aprlnew = exp[3]-200
+print(aprlnew)
+exp.insert(3,aprlnew)
+print(exp)
