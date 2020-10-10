@@ -1,25 +1,8 @@
 '''
-<<<<<<< HEAD
-You are given the pointer to the head node of a linked list and an integer to add to the list. Create a new node with the given integer.
-Insert this node at the tail of the linked list and return the head node of the linked list formed after inserting this new node.
-The given head pointer may be null, meaning that the initial list is empty.
-O/P: 141 -> 302 -> 164 -> 530 -->474
+Question: Delete the node at a given position in a linked list and return a reference to the head node. The head is at position 0. The list may be empty after you delete the node. In that case, return a null value.
 '''
+#Solution: 
 
-#Solution:
-
-
-=======
-Question: You are given the pointer to the head node of a linked list and an integer to add to the list. Create a new node with the given integer. Insert this node at the tail of the linked list and return the head node of the linked list formed after inserting this new node. The given head pointer may be null, meaning that the initial list is empty.
-
-First the linked list is NULL. After inserting 141, the list is 141 -> NULL.
-After inserting 302, the list is 141 -> 302 -> NULL.
-After inserting 164, the list is 141 -> 302 -> 164 -> NULL.
-After inserting 530, the list is 141 -> 302 -> 164 -> 530 -> NULL. After inserting 474, the list is 141 -> 302 -> 164 -> 530 -> 474 -> NULL, which is the final list.
-'''
-#Solution:
-
->>>>>>> 0d931bacb5383b1eda8c7fbc6e91d3c22e9778a7
 class Node:
     def __init__(self, data=None, next=None):
         self.data = data 
@@ -64,6 +47,30 @@ class Linkedlist():
     #         count+=1
     #         itr = itr.next
     #     return
+    
+    # Deleting Node 
+    def delete_node(self,key):
+        # Store head node 
+        itr = self.head
+        # If head node itself holds the key to be deleted:
+        if (itr is not None):
+            if(itr.data==key):
+                self.head=itr.next
+                itr=None
+                return
+    # Search for the key to be deleted, keep track of the  
+    # previous node as we need to change 'prev.next' 
+        while(itr is not None):
+            if itr.data==key:
+                break
+            prev = itr
+            itr=itr.next
+    # if key was not present in linked list:
+        if(itr==None):
+            return
+    # Unlink the node from linked list  
+        prev.next=itr.next
+        itr = None
         
 #execution of program 
 if __name__ == '__main__':
@@ -72,8 +79,18 @@ if __name__ == '__main__':
     ll.insert_at_beg(141)
     ll.insert_at_end(302)
     ll.insert_at_end(164)
+    ll.printlist()
     ll.insert_at_end(530)
     ll.insert_at_end(474)
+    ll.insert_at_end(251)
+    ll.insert_at_end(832)
+    ll.insert_at_end(101)
+    ll.printlist()
+    ll.delete_node(164)
+    ll.printlist()
+    ll.delete_node(832)
+    ll.printlist()
+    ll.delete_node(251)
     ll.printlist()
     # print("Length of the list: ",ll.get_length())
     
