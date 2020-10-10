@@ -1,0 +1,110 @@
+'''
+Given a pointer to the head of a singly-linked list, print each  value from the reversed list. If the given list is empty, do not print anything.
+There are three test cases. There are no blank lines between test case output.
+
+The first linked list has 5 elements. Printing this in reverse order produces:
+5
+2
+4
+12
+16
+
+The second linked list has 3  elements. Printing this in reverse order produces:
+9
+3
+7
+The third linked list has 5  elements: . Printing this in reverse order produces:
+13
+3
+18
+1
+5
+I/p: 16,12,4,2,5,7,3,9,5,1,18,3,13
+'''
+class Node:
+    def __init__(self,data=None,next=None):
+        self.data = data
+        self.next = next
+        
+class Linkedlist:
+    def __init__(self):
+        self.head = None 
+        
+    #Utility Function:
+    def printlist(self):
+        if self.head is None:
+            return
+        itr = self.head
+        llstr=" "
+        while itr: 
+            llstr += str(itr.data)+'-->'
+            itr = itr.next
+        print(llstr)
+        
+    #Insert at Beginning:
+    def insert_at_beg(self,data):
+        node = Node(data,self.head)
+        self.head = node
+        
+    #Insert at End:
+    def insert_at_end(self,data):
+        if self.head is None:
+            self.head = Node(data,None)
+            return
+        
+        itr = self.head
+        while (itr.next):
+            itr = itr.next
+        itr.next = Node(data,None)
+        
+    #Inserting Data_list :
+    def insert_values(self,data_list):
+        self.head=None
+        for data in data_list:
+            self.insert_at_end(data)
+        
+    #Get Length of list:
+    def get_length(self):
+        itr = self.head 
+        count = 0
+        while itr:
+            itr = itr.next
+            count += 1
+        return count
+        
+    #Reversing Link at Node :
+    def reverse_at_node(self,head,k):
+        itr = head 
+        prev = None 
+        next = None 
+        count = 0 
+        while(itr!=None and count<k):
+            next = itr.next 
+            itr.next= prev
+            prev = itr 
+            itr = next
+            count+=1
+            
+        if (next!=None):
+            head.next = self.reverse_at_node(next,k)
+        return prev
+
+#Execution of program:
+if __name__ == '__main__':
+    ll = Linkedlist()
+    # ll.head = Node("Null")
+    # print(ll.head.data)
+    #ll.insert_at_beg(16)
+    ll.insert_values([16,12,4,2,5,7,3,9,5,1,18,3,13])
+    print("The Given Linked List: ")
+    ll.printlist()
+    print("The Length of list: ",ll.get_length())
+    ll.head = ll.reverse_at_node(ll.head,5)
+    print("\n first Linked list in Reverse Order: ")
+    ll.printlist()
+    # ll.head = ll.reverse_at_node(ll.head,3)
+    # print("\n Second Linked list in Reverse Order: ")
+    # ll.printlist()
+    # ll.head = ll.reverse_at_node(ll.head,5)
+    # print("\n Third Linked list in Reverse Order: ")
+    # ll.printlist()

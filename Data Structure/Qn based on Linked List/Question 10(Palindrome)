@@ -1,0 +1,48 @@
+'''
+Given a singly linked list of characters, write a function that returns true if the given list is a palindrome, else false.
+List : Madam
+'''
+#Solution:
+class Node:
+    def __init__(self,data=None,next=None):
+        self.data =  data
+        self.next = next
+        
+def ispalindrome(head):
+    itr = head #temp pointer
+    stack =[] #creating empty stack 
+    ispalin = True
+    while (itr!=None): 
+        stack.append(itr.data)
+        itr = itr.next
+        
+    # Popping out Data:
+    while (head!=None):
+        i = stack.pop()
+        if (head.data==i):
+            ispalin =True
+        else:
+            ispalin = False
+            break
+        head = head.next
+    return ispalin
+    
+# Driver Code 
+# Addition of linked list 
+one = Node("m")
+two = Node("a") 
+three = Node("d") 
+four = Node("a") 
+five = Node("m") 
+  
+#Initialize the next pointer 
+#of every current pointer
+one.next = two 
+two.next = three 
+three.next = four 
+four.next = five 
+five.next = None
+# Call function to check palindrome or not 
+result = ispalindrome(one) 
+  
+print("isPalindrome: ", result) 
