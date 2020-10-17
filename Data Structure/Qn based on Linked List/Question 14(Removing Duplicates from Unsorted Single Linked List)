@@ -1,0 +1,77 @@
+# Removing Duplicates from Unsorted Single Linked List :
+'''
+Input: 11--> 12-->11-->21-->43-->52-->43-->11-->60
+Output: 11-->12-->21-->43-->52-->60
+
+'''
+
+class Node:
+    def __init__(self, data=None, next=None):
+        self.data = data 
+        self.next = next 
+class Linkedlist():
+    def __init__(self):
+        self.head = None
+        
+    # Inserting the value at Beginning:
+    def insert_at_beg(self,data):
+        node = Node(data, self.head)
+        self.head = node
+    
+    # Utility Function:
+    def printlist(self):
+        if self.head is None: # if list is empty
+            print("Linked list is Empty")
+            return
+        #if list has some values:
+        itr = self.head
+        llstr = ' ' # created a blank list 
+        while itr:
+            llstr += str(itr.data)+ '--->'
+            itr = itr.next
+        print(llstr)
+        
+    #Inserting the Values from End:
+    def insert_at_end(self,data):
+        if self.head is None: # if list is empty
+            node = Node(data,None)
+            return
+        itr= self.head # if list has some Values
+        while itr.next:
+            itr = itr.next
+        itr.next = Node(data,None)
+        
+    #Removing Duplicates : ( Removing only adjecent duplicate values)
+    def remove_duplicates(self):
+        itr = self.head
+        prev = None 
+        dup_values = dict()
+        while itr:
+            if itr.data in dup_values:
+                #Remove Node:
+                prev.next = itr.next 
+                itr = None 
+            else:
+                # No Duplicates:
+                dup_values[itr.data]=1
+                prev = itr
+            itr = prev.next
+
+
+#execution of program 
+if __name__ == '__main__':
+    ll = Linkedlist()
+    print("The Given linked list")
+    ll.insert_at_beg(11)
+    ll.insert_at_end(12)
+    ll.insert_at_end(11)
+    ll.insert_at_end(21)
+    ll.insert_at_end(43)
+    ll.insert_at_end(52)
+    ll.insert_at_end(43)
+    ll.insert_at_end(11)
+    ll.insert_at_end(60)
+    ll.printlist()
+    print("The Single Linked List after removing duplicates: ")
+    ll.remove_duplicates()
+    ll.printlist()

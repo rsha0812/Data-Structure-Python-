@@ -1,0 +1,115 @@
+class Node:
+    def __init__(self, data=None, prev=None, next=None):
+        self.data = data
+        self.prev = prev 
+        self.next = next 
+        
+class doublylinkedlist:
+    def __init__(self):
+        self.head = None
+        
+    #Utility Function :
+    def printlist(self):
+        itr = self.head 
+        # llstr = ' '
+        # llstr +=  str(itr.data) +'-->'
+        while(itr):
+            print(itr.data)
+            itr = itr.next 
+        # print(llstr)
+        
+    #Insertion at front of DLL:
+    def insert_at_front(self,data):
+        if self.head is None:
+            new_node = Node(data)
+            new_node.prev = None
+            self.head = new_node
+        else:
+            new_node = Node(data)
+            self.head_prev = new_node
+            new_node.next=self.head
+            self.head = new_node
+            new_node.prev = None
+            
+    # Appending elements in List:
+    def insert_values(self,data):
+        if self.head is None:
+            new_node = Node(data)
+            new_node.prev = None
+            self.head = new_node
+        else:
+            new_node = Node(data)
+            itr = self.head 
+            while itr.next:
+                itr = itr.next 
+            itr.next = new_node
+            new_node.prev = itr
+            new_node.next = None
+    
+    #Deleting Node:
+    '''
+    We will consider 4 cases here for deleting the node:
+    case 1 : When DLL has only one node in list and deleting the first/head node.
+    case 2 : When Dll has more than one node in list and deleting the first/head node.
+    case 3 : When Dll has multiple nodes in list and deleting the node 
+                which is not a last node of list.
+    case 4 : Deleting last node of list.
+    '''
+    #Deleting Node:
+    def delete_node(self, key):
+        itr = self.head 
+        while itr:
+            if (itr.data==key and itr==self.head): #[case 1 and case 2]
+                if not itr.next: #[case 1]
+                    itr = None 
+                    self.head = None 
+                    return
+                else: #[Case 2]
+                    nxt = itr.next 
+                    itr.next = None 
+                    nxt.prev = None 
+                    itr = None 
+                    self.head = nxt
+                    return
+            
+            elif (itr.data==key): #[case 3 and case 4]
+                if itr.next: #[itr.next != None]
+                    #case 3
+                    nxt = itr.next
+                    prv = itr.prev 
+                    prv.next = nxt 
+                    nxt.prev = prv
+                    itr.next = None
+                    itr.prev = None 
+                    itr = None 
+                    return 
+                
+                else: #[itr.next== None(deleting last node)]
+                    #case 4
+                    prv = itr.prev 
+                    prv.next = None 
+                    itr.prev = None 
+                    itr = None 
+                    return 
+                
+            itr = itr.next
+                
+                
+#Execution of program:       
+if __name__ == '__main__': 
+    dll = doublylinkedlist()
+    dll.insert_at_front(1)
+    dll.insert_values(2)
+    dll.insert_values(3)
+    dll.insert_values(5)
+    dll.insert_values(7)
+    dll.insert_values(11)
+    dll.insert_values(13)
+    dll.insert_values(17)
+    dll.insert_at_front(9)
+    dll.delete_node(9)# case 1 right
+    dll.delete_node(5)# case 3
+    dll.delete_node(17) # case 4
+    dll.printlist()
+    
+        

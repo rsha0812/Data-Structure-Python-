@@ -1,0 +1,62 @@
+'''
+Given a singly linked list and a key, count number of occurrences of 
+given key in linked list. For example, if given linked list is 14-->56-->14-->12-->56-->56-->11
+and given key is 56, then output should be 3.
+Method 1- Without Recursion
+Algorithm:
+
+1. Initialize count as zero.
+2. Loop through each element of linked list:
+     a) If element data is equal to the passed number then
+        increment the count.
+3. Return count. 
+'''
+#Solution:
+
+class Node:
+    def __init__(self,data=None,next=None):
+        self.data = data
+        self.next = next 
+        
+class Linkedlist:
+    def __init__(self):
+        self.head=None
+    
+    #Utility Function:
+    def printlist(self):
+        if self.head is None:
+            return
+        itr = self.head 
+        llstr = ' '
+        while itr:
+            llstr += str(itr.data)+'-->'
+            itr = itr.next 
+        print(llstr)
+    
+    #Inserting the elements:
+    def insert_at_beg(self,data):
+        node = Node(data,self.head)
+        self.head = node 
+        
+    # Counting the Occurence of given key:
+    def Occurence(self,key):
+        itr = self.head 
+        count = 0
+        while(itr != None):
+            if (itr.data==key):
+                count+=1
+            itr = itr.next
+        return count
+        
+#Program Execution:
+if __name__=='__main__':
+    ll = Linkedlist()
+    ll.insert_at_beg(14)
+    ll.insert_at_beg(56)
+    ll.insert_at_beg(14)
+    ll.insert_at_beg(12)
+    ll.insert_at_beg(56)
+    ll.insert_at_beg(56)
+    ll.insert_at_beg(11)
+    ll.printlist()
+    print("The number of times key occure in list: ",ll.Occurence(56))

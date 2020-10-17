@@ -1,0 +1,96 @@
+'''
+ Removing duplicates from Unsorted DLL:
+ Note : Unable to delete Duplicate of first node
+ changes required.
+ '''
+
+class Node:
+    def __init__(self, data=None, prev=None, next=None):
+        self.data = data
+        self.prev = prev 
+        self.next = next 
+        
+class doublylinkedlist:
+    def __init__(self):
+        self.head = None
+        
+    #Utility Function :
+    def printlist(self):
+        itr = self.head 
+        # llstr = ' '
+        # llstr +=  str(itr.data) +'-->'
+        while(itr):
+            print(itr.data)
+            itr = itr.next 
+        # print(llstr)
+        
+    #Insertion at front of DLL:
+    def insert_at_front(self,data):
+        if self.head is None:
+            new_node = Node(data)
+            new_node.prev = None
+            self.head = new_node
+        else:
+            new_node = Node(data)
+            self.head_prev = new_node
+            new_node.next=self.head
+            self.head = new_node
+            new_node.prev = None
+            
+    # Appending elements in List:
+    def insert_values(self,data):
+        if self.head is None:
+            new_node = Node(data)
+            new_node.prev = None
+            self.head = new_node
+        else:
+            new_node = Node(data)
+            itr = self.head 
+            while itr.next:
+                itr = itr.next 
+            itr.next = new_node
+            new_node.prev = itr
+            new_node.next = None
+            
+    # Removing Duplicates from Unsorted DLL:
+    def remove_duplicates(self):
+        itr = self.head 
+     
+        dup_values = dict()
+        while itr: # Edit require for first node 
+            if itr.data in dup_values:
+                nxt = itr.next
+                prv = itr.prev
+                prv.next = nxt 
+                # nxt.prev = prv 
+                itr = None 
+            else:
+                # No Duplicates:
+                dup_values[itr.data]=1
+                prv = itr
+            itr = prv.next
+    
+    
+#Execution of program:       
+if __name__ == '__main__':
+    dll = doublylinkedlist()
+    dll.insert_at_front(8)
+    dll.insert_values(4)
+    dll.insert_values(4)
+    dll.insert_values(6)
+    dll.insert_values(4)
+    dll.insert_values(8)
+    dll.insert_values(12)
+    dll.insert_values(10)
+    dll.insert_values(12)
+    print("The Given Double linked list: ")
+    dll.printlist()
+    print("\n") # New line 
+    # dll.reverse()
+    # print("The Reversed Double linked list: ")
+    # dll.printlist()
+    
+    dll.remove_duplicates()
+    print("The Unsorted Double linked list after removing duplicates: ")
+    dll.printlist()
+        

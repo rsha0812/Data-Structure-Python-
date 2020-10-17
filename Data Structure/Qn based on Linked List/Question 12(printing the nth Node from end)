@@ -1,0 +1,64 @@
+'''
+Given a Linked List and a number n, write a function that returns the value at the n’th node from the end of the Linked List.
+Method 1 (Use length of linked list) 
+1) Calculate the length of Linked List. Let the length be len. 
+2) Print the (len – n + 1)th node from the beginning of the Linked List. 
+'''
+#Solution :
+
+class Node:
+    def __init__(self,data=None,next=None):
+        self.data = data
+        self.next = next 
+        
+class Linkedlist:
+    def __init__(self):
+        self.head=None
+    
+    #Utility Function:
+    def printlist(self):
+        if self.head is None:
+            return
+        itr = self.head 
+        llstr = ' '
+        while itr:
+            llstr += str(itr.data)+'-->'
+            itr = itr.next 
+        print(llstr)
+    
+    #Inserting the elements:
+    def insert_at_beg(self,data):
+        node = Node(data,self.head)
+        self.head = node 
+        
+    # Get Length of the list and print Nth node from end:
+    def printNthnode(self,n):
+        itr = self.head 
+        len = 0 
+        while itr:
+            itr = itr.next 
+            len +=1
+            
+        #print count:
+        if (n>len):
+            print("Invalid Input as Count is larger than length of list")
+            return 
+        itr = self.head
+        for i in range(0, len-n):
+            itr = itr.next 
+        print(itr.data)
+        
+#Program Execution:
+if __name__=='__main__':
+    ll = Linkedlist()
+    ll.insert_at_beg(141)
+    ll.insert_at_beg(256)
+    ll.insert_at_beg(153)
+    ll.insert_at_beg(421)
+    ll.insert_at_beg(603)
+    ll.insert_at_beg(784)
+    ll.printlist()
+    ll.printNthnode(2)
+
+            
+        

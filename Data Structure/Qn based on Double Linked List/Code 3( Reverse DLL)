@@ -1,0 +1,79 @@
+class Node:
+    def __init__(self, data=None, prev=None, next=None):
+        self.data = data
+        self.prev = prev 
+        self.next = next 
+        
+class doublylinkedlist:
+    def __init__(self):
+        self.head = None
+        
+    #Utility Function :
+    def printlist(self):
+        itr = self.head 
+        # llstr = ' '
+        # llstr +=  str(itr.data) +'-->'
+        while(itr):
+            print(itr.data)
+            itr = itr.next 
+        # print(llstr)
+        
+    #Insertion at front of DLL:
+    def insert_at_front(self,data):
+        if self.head is None:
+            new_node = Node(data)
+            new_node.prev = None
+            self.head = new_node
+        else:
+            new_node = Node(data)
+            self.head_prev = new_node
+            new_node.next=self.head
+            self.head = new_node
+            new_node.prev = None
+            
+    # Appending elements in List:
+    def insert_values(self,data):
+        if self.head is None:
+            new_node = Node(data)
+            new_node.prev = None
+            self.head = new_node
+        else:
+            new_node = Node(data)
+            itr = self.head 
+            while itr.next:
+                itr = itr.next 
+            itr.next = new_node
+            new_node.prev = itr
+            new_node.next = None
+            
+    # Reverse DLL:
+    def reverse(self):
+        tmp = None 
+        itr = self.head 
+        while itr:
+            tmp = itr.prev #[storing prev in temp var] 
+            itr.prev = itr.next #[Flipping Nodes]
+            itr.next = tmp
+            itr = itr.prev
+        if tmp:
+            self.head = tmp.prev # [assigning head after reversing the list]
+            
+#Execution of program:       
+if __name__ == '__main__':
+    dll = doublylinkedlist()
+    dll.insert_at_front(1)
+    dll.insert_values(2)
+    dll.insert_values(3)
+    dll.insert_values(5)
+    dll.insert_values(7)
+    dll.insert_values(11)
+    dll.insert_values(13)
+    dll.insert_values(17)
+    print("The Given Double linked list: ")
+    dll.printlist()
+    print("\n") # New line 
+    dll.reverse()
+    print("The Reversed Double linked list: ")
+    dll.printlist()
+    
+        
