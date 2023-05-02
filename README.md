@@ -54,4 +54,11 @@ where , f(n) = Time Algorithm for function
 
 ### Increasing order of Common Runtimes: 
 1 < logn < n < nlogn < n**2 < n**3 < 2**n < n**n
+
+#### Quick Sort 
+Average Case Time complexity - O(nlogn) as array is partitioned into 2 sub-arrays around the pivot (median value of array) element and recursively sorts each sub-array. 
+Worst Case Tiem Complexity - O(n**2) 
+
+#### Binary Search 
+Time Complexity = O(logn) as it follows divide-and-conquer algorithm. 
         
