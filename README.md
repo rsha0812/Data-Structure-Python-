@@ -12,3 +12,46 @@ The time required by the algorithm to solve given problem is called time complex
 Tc(n) = c * n 
 where, n = no. of steps in algorithm 
        c = time taken in each step 
+
+
+## Asymptotic Analysis
+To conclude Best, Average and Worst case based on Runtime execution.
+
+Time requiered by an algorithm falls under 3 types: 
+1) Best Case - Minimum time required for program execution. 
+2) Average Case - Average time required for program execution. 
+3) Worst Case - Maximum time required for program execution. 
+
+Commonly Used Asymptotic notation to calculate the time complexity of Algorithm. 
+
+### 1) Big Oh Notation(O) - 
+Defines upper bound of an algorithm's running time. 
+Measures worst case time complexity or the longest amount of time an algorithm can possibly take to complete. 
+
+Mathematical Expression: 
+0 <= f(n) <= c*g(n) for all n >= no
+where , f(n) = Time Algorithm for function
+        g(n) = function 
+        
+### 2) Big Omega(Ω):
+Defines lower bound of algorithm's running time. 
+Measures best case time complexity .
+
+Mathematical Expression: 
+0 <= c*g(n) <= f(n) for all n >= no
+where , f(n) = Time Algorithm for function
+        g(n) = function 
+
+### 3) Big Theta(Θ): 
+Express lower and upper bound of algorithm's running time. 
+Used to describe avearge case. 
+
+Mathematical Expression: 
+c2*g(n) <= f(n) <= c1*g(n) for all n >= no
+where , f(n) = Time Algorithm for function
+        g(n) = function 
+
+
+### Increasing order of Common Runtimes: 
+1 < logn < n < nlogn < n**2 < n**3 < 2**n < n**n
+        
