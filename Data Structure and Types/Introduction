@@ -1,1 +1,12 @@
+There are usually just two types of data structures −
+1) Linear - The data is stored in linear data structures sequentially.
+- Arrays
+- Linked Lists
+- Stacks
+- Queues
 
+2) Non-Linear - Non-Linear data structures store the data in the form of a hierarchy.
+- Graphs
+- Trees
+- Tries
+- Maps
