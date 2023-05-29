@@ -60,3 +60,31 @@ def most_freq(arr):
     print(element_having_max_freq,max_count)
 most_freq([1, 3, 2, 1, 4,2,4,2,2,1,1,1])
 ## Time Complexity, Tc = O(n**2)
+
+#Q5 ) Least frequent element in an array.
+def least_freq(arr):
+    arr = sorted(arr)
+    n = len(arr)
+    count = 1
+    min_count = n+1
+    least_freq_element = arr[-1]
+    print(least_freq_element)
+    print(arr)
+    for i in range(1,n): 
+        if arr[i] == arr[i-1]: 
+            count += 1
+        else: 
+            if (count < min_count):
+                min_count = count
+                least_freq_element = arr[i - 1]
+ 
+            count = 1
+    # If last element is least frequent
+    if (count < min_count):
+        min_count = count
+        least_freq_element = arr[n - 1]
+ 
+    return least_freq_element,min_count
+    
+print(least_freq([1, 3, 2, 1, 2, 2, 3, 1,5,6,7,7,6]))
+## Time Complexity, Tc = O(nlog(n)) 
