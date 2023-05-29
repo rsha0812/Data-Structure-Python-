@@ -1,1 +1,62 @@
 Code
+
+#Q1) Write a program to reverse an array or string
+### Code : 
+def rev_arr(arr): 
+    new = []
+    i = len(arr)-1
+    while i >= 0: 
+        new.append(arr[i])
+        i -= 1
+    return new 
+
+print(rev_arr([4,6,7]))
+## Time Complexicity = O(n) ## as looping through n elements 
+## Space Complexity = O(n) ## as appending n elements so n memory consumed.
+
+#Q2) Program to find the minimum (or maximum) element of an array.
+### Code: 
+a = [1, 423, 6, 46, 34, 23, 13, 53, 4]
+a_sorted = sorted(a)
+print(a_sorted)
+min_ele = a_sorted[0]
+max_ele = a_sorted[-1]
+print(f"Minimum element of Array {min_ele}")
+print(f"Maximum element of Array {max_ele}")
+
+#Q3) Last duplicate element in a sorted array.
+### Code: 
+def find_dup(arr): 
+    n = len(arr)
+    print(n)
+    
+    if n is None or n <= 0: 
+        return 
+    arr = sorted(arr)
+    print(arr)
+    
+    for i in range(n-1,0,-1): 
+        if arr[i] == arr[i-1]: 
+            print(f"Duplicate Value at index {i} is {arr[i]}")
+            return 
+    print("No Duplicate Value found in given Array")
+find_dup([1, 5, 6, 6, 7,5])
+## Time Complexity, Tc = O(n)
+
+#Q4 ) Most frequent element in an array.
+### Code: 
+def most_freq(arr):
+    max_count = 0
+    element_having_max_freq = 0
+    n = len(arr)
+    for i in range(0,n): ## O(n)
+        count = 0
+        for j in range(0,n): ## O(n)
+            if arr[i] == arr[j]: 
+                count += 1
+        if count > max_count: 
+            max_count = count 
+            element_having_max_freq = arr[i]
+    print(element_having_max_freq,max_count)
+most_freq([1, 3, 2, 1, 4,2,4,2,2,1,1,1])
+## Time Complexity, Tc = O(n**2)
