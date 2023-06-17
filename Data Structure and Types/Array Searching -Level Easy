@@ -319,4 +319,28 @@ def long_consecutive_steps(arr):
     
 arr1 = [1, 2, 3, 4]
 print(long_consecutive_steps(arr1))
+## Time Complexity, Tc = O(n)
 
+
+#Q) You are given an array A[] of n-elements and a positive integer k(other than 1). Now you have find the number of pairs Ai, Aj such that Ai = Aj*(kx) where x is an integer. Given that (k≠1).
+
+### code: 
+def pairs_ele(arr,k): 
+    n = len(arr)
+    count_pair = 0
+    for i in range(n):
+        for j in range(i+1,n): 
+             # count Aj such that Ai*k^x = Aj
+            x = 0
+            while (arr[i] * pow(k,x) <= arr[j]): 
+                if arr[i] * pow(k,x) == arr[j]: 
+                    count_pair+=1
+                    break 
+                x+=1
+    return count_pair
+
+# ar1 = [3, 6, 4, 2]
+ar1 = [3, 8, 9, 12, 18, 4, 24, 2, 6]
+k = 2
+print(pairs_ele(ar1,k))
+## Time Complexity, Tc = O(n**2)
