@@ -185,3 +185,138 @@ ar3 = [1, 2, 3, 3, 3, 3, 10]
 print(majority_element(ar1)) ## False
 print(majority_element(ar3)) ## True
 
+
+#Q) Given an array arr[] of size N-1 with integers in the range of [1, N], the task is to find the missing number from the first N integers.
+
+###Code: 
+def find_missing_num(arr): 
+    arr = sorted(arr)
+    n = len(arr) + 1
+    print(f"Lenght of array {n}")
+    actual_sum = (n*(n+1))//2
+    print(f"Sum of {n} natural number is {actual_sum}")
+    arr_sum = sum(arr)
+    print(f"Sum of given array {arr_sum}")
+    miss_num = actual_sum - arr_sum 
+    print(f"Missing Number from given array {miss_num}")
+ar1 = [1, 2, 4, 6, 3, 7, 8]
+find_missing_num(ar1)
+
+#Q) Find the Number Occurring Odd Number of Times
+
+###Code: 
+def number_occuring_odd_times(arr): 
+    new = {}
+    odd_times_occ = []
+    for i in range(len(arr)): 
+        if arr[i] in new: 
+            new[arr[i]] += 1
+        else: 
+            new[arr[i]] = 1
+    print(new)
+    for key, val in new.items(): 
+        if val%2 == 1: 
+            odd_times_occ.append(key)
+            
+    return odd_times_occ
+    
+ar1 = [1, 2, 3, 2, 3, 1, 3]
+print(number_occuring_odd_times(ar1))
+
+#Q) Find the first repeating element in an array of integers.
+
+###Code: 
+def first_repeat_ele(arr): 
+    n = len(arr)
+    for i in range(n): 
+        for j in range(i+1,n): 
+            if arr[i] == arr[j]: 
+                return arr[i]
+    return -1
+    
+ar1 = [10, 5, 3, 4, 3, 5, 6]
+print(first_repeat_ele(ar1))
+
+#Q) Find lost element from a duplicated array
+
+###Code: 
+def lost_element(arr1,arr2): 
+    lost_ele = None
+    if len(arr1) > len(arr2): 
+        for i in arr1: 
+            if i not in arr2: 
+                lost_ele = i 
+    else: 
+        for i in arr2: 
+            if i not in arr1: 
+                lost_ele = i 
+    return lost_ele
+   
+arr1 = [1, 4, 5, 7, 9]
+arr2 = [4, 5, 7, 9]
+# arr1 = [2, 3, 4, 5]
+# arr2 = [2, 3, 4, 5, 6]
+print(lost_element(arr1,arr2))
+
+#Q) Third largest element in an array of distinct elements.
+
+### code: 
+def third_largest_element(arr): 
+    arr = sorted(arr)
+    if len(arr) < 3: 
+        print("Invalid Input")
+    else: 
+        third_larg_ele = arr[-3]
+        return third_larg_ele
+# arr1 = [1, 14, 2, 16, 10, 20] 
+arr1 = [1,2]
+print(third_largest_element(arr1))
+
+#Q) Find element in a sorted array whose frequency is greater than or equal to 
+# n/2.
+
+### code: 
+def element_grt_freq(arr): 
+    n = len(arr)
+    new ={}
+    ele_grt_freq = None
+    for i in range(n): 
+        if arr[i] in new: 
+            new[arr[i]] += 1
+        else: 
+            new[arr[i]] = 1
+    
+    for key,val in new.items(): 
+        if val >= n/2: 
+            ele_grt_freq = key 
+    return ele_grt_freq
+            
+# arr1 = [3, 4, 5, 5, 5]
+arr1 = [1, 1, 1, 2, 3]
+print(element_grt_freq(arr1))
+
+#Q) Consecutive steps to the rooftop by finding the longest increasing subarray:
+
+'''
+# Follow the given steps to solve the problem:
+# initialize count = 0
+# initialize maximum = 0
+# if arr[i] > a[i-1], then increment count
+# else maximum = max(maximum, count) and set count equal to zero
+# At the end return maximum = max(maximum, count)
+'''
+### code: 
+def long_consecutive_steps(arr): 
+    cnt = 0 
+    maximum = 0
+    for i in range(len(arr)): 
+        if arr[i]>arr[i-1]: 
+            cnt += 1
+        else: 
+            maximum = max(maximum,cnt)
+            cnt = 0
+    return max(maximum,cnt)
+    
+arr1 = [1, 2, 3, 4]
+print(long_consecutive_steps(arr1))
+
