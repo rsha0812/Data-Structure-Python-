@@ -1,1 +1,44 @@
+#Q2) Given a sorted array and a value x, the ceiling of x is the smallest element in an array greater than or equal to x, and the floor is the greatest element smaller than or equal to x. Assume that the array is sorted in non-decreasing order. Write efficient functions to find the floor and ceiling of x. 
 
+### Code: 
+'''
+For example, let the input array be {1, 2, 8, 10, 10, 12, 19}
+For x = 0:    floor doesn't exist in array,  ceil  = 1
+For x = 1:    floor  = 1,  ceil  = 1
+For x = 5:    floor  = 2,  ceil  = 8
+For x = 20:   floor  = 19,  ceil doesn't exist in array
+
+Method 1 (Linear Search) 
+Algorithm to search ceiling of x: 
+
+If x is smaller than or equal to the first element in the array then return 0(index of the first element).
+Else linearly search for an index i such that x lies between arr[i] and arr[i+1]. 
+If we do not find an index i in step 2, then return -1. 
+'''
+
+def ceilsearch(arr,x): 
+    n = len(arr)
+    floor = 0
+    ceil = 0
+    for i in range(0,n): 
+        if arr[i] <= x <= arr[i+1]: 
+            # floor = arr[i]
+            ceil = arr[i]
+        if x < arr[0]: 
+            return 0 
+        if x > arr[-1]: 
+            return -1
+    return ceil
+    
+arr1 = [1, 2, 8, 10, 10, 12, 19]
+x = 20
+index = ceilsearch(arr1,x)
+
+if index == -1: 
+    print(f"Ceiling of {x} doesn't exist in array")
+else: 
+    print ("ceiling of %d is %d"%(x, arr1[index]))
+# print(ceilsearch(arr1,0))
+# print(ceilsearch(arr1,1))
+# print(ceilsearch(arr1,5))
+# print(ceilsearch(arr1,20))
