@@ -1,0 +1,160 @@
+#### Reverse the String 
+### Q1) Write a program to reverse an array or string
+
+### Code: 
+'''
+Steps : 
+1) Initialize start and end indexes as start = 0, end = n-1 
+2) In a loop, swap arr[start] with arr[end] and change start and end as follow:
+start = start +1, end = end – 1
+'''
+
+def reverse(arr): 
+    n = len(arr)
+    start = 0
+    end = n-1 
+    while start < end: 
+        arr[start],arr[end] = arr[end], arr[start]
+        start += 1
+        end -= 1
+    return arr
+        
+arr1 = [1, 2, 3, 4, 5, 6]
+print("Actual Array")
+print(arr1)
+print("Reverse Array")
+print(reverse(arr1))
+
+#### Left Rotation by k times
+### Q2) Given an array of integers arr[] of size N and an integer, the task is to rotate the array elements to the left by d positions.
+### code: 
+def left_rotate_arr(arr,d):
+    n = len(arr)
+    print(n) ## 5 
+    k = arr.index(d)
+    new_list = arr[k+1:] + arr[0:k+1]
+    return new_list
+        
+arr1 = [1, 3, 5, 7, 9]
+print(left_rotate_arr(arr1,5)) 
+### Output: [7, 9, 1, 3, 5]
+print(left_rotate_arr(arr1,3))
+### Output : [5, 7, 9, 1, 3]  
+
+
+#### Right Rotation by k times
+### Q3) Given an Array of size N and a values K, around which we need to right rotate the array. How to quickly print the right rotated array?
+### code: 
+
+def right_rotate_arr(arr,k):
+    n = len(arr) ## 5 
+    new_list = arr[n-k:] + arr[0:n-k] ### arr[5-2:] + arr[0:5-2]
+    return new_list
+   
+arr1 = [1, 3, 5, 7, 9]
+print(right_rotate_arr(arr1,2))    
+### Output : [7, 9, 1, 3, 5]
+
+
+###### Search/Delete/Insert Operation in an Unsorted Array #####
+
+### Q4) Search Operation in Unsorted Array 
+###Code: 
+def search(arr,ele): 
+    n = len(arr)
+    for i in range(0,n):
+        if arr[i] == ele: 
+            return i
+            break 
+    return -1 
+    
+arr1 = [5,1,4,3,2,6]
+ele = 4
+# print(search(arr1,ele))
+index = search(arr1,ele)
+if index != -1: 
+    print(f"Element found at index : {index}")
+else: 
+    print("Element not foudn in given array")
+
+#### Q5) Insert Operation in Unsorted Array 
+# 1) Insert element at the end of array 
+# 2) Insert element at any position 
+### Code 1: 
+def insert_elem_end(arr,ele): 
+    arr.append(ele)
+    return arr
+arr1 = [5,1,4,2,6]
+print(insert_elem_end(arr1,3))
+    
+### Code 2:   
+def insert_elem_end(arr,ele,indx): 
+    arr.insert(indx,ele)
+    return arr
+arr1 = [5,1,4,2,6]
+print(insert_elem_end(arr1,3,2))
+
+
+#### Q6) Delete Operation in an Unsorted Array 
+# 1) Removing the given element -- arr.remove(element)
+# 2) Removing the element at index(i) -- arr.pop(i)
+# 3) Removing the element at end --- arr.pop()
+
+### Code: 
+# 1) Removing the given element -- arr.remove(element)
+def delete_element(arr,ele): 
+    for i in arr: 
+        if i == ele: 
+            arr.remove(i)
+            
+    return arr
+arr1 = [5,1,4,3,2,6]
+ele = 3
+print("Original Array")
+print(arr1)
+print(f"Array after removing the element : {ele}")
+print(delete_element(arr1,ele))
+
+#### O/P : 
+# Original Array
+# [5, 1, 4, 3, 2, 6]
+# Array after removing the element : 3
+# [5, 1, 4, 2, 6]
+
+# 2) Removing the element at index(i) -- arr.pop(i)
+
+def del_ele_index(arr,indx): 
+    n = len(arr)
+    for i in range(0,n): 
+        if i == indx: 
+            arr.pop(i)
+    return arr
+    
+arr1 = [5,1,4,3,2,6]
+indx = 2
+print("Original Array")
+print(arr1)
+print(f"Array after removing the element {arr1[indx]} at index {indx}")
+print(del_ele_index(arr1,indx))
+
+#### O/P :
+# Original Array
+# [5, 1, 4, 3, 2, 6]
+# Array after removing the element 4 at index 2
+# [5, 1, 3, 2, 6]
+
+# 3) Removing the element at end --- arr.pop()
+def delete_element_end(arr): 
+    arr.pop()
+    return arr
+arr1 = [5,1,4,3,2,6]
+print("Original Array")
+print(arr1)
+print(f"Array after removing the last element ")
+print(delete_element_end(arr1))
+
+#### O/P :
+# Original Array
+# [5, 1, 4, 3, 2, 6]
+# Array after removing the last element 
+# [5, 1, 4, 3, 2]
