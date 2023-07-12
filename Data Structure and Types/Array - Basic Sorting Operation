@@ -1,1 +1,9 @@
+A Sorting Algorithm is used to rearrange a given array or list of elements according to a comparison operator on the elements. The comparison operator is used to decide the new order of elements in the respective data structure.
+
+Types of Sorting Techniques
+There are various sorting algorithms are used in data structures. The following two types of sorting algorithms can be broadly classified:
+
+1) Comparison-based: We compare the elements in a comparison-based sorting algorithm)
+2) Non-comparison-based: We do not compare the elements in a non-comparison-based sorting algorithm)
+
 
