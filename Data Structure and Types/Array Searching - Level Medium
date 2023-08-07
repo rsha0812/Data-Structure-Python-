@@ -43,6 +43,32 @@ else:
 # print(ceilsearch(arr1,5))
 # print(ceilsearch(arr1,20))
 
+Method 2: 
+def floor_ceil(arr,x): 
+    n = len(arr)
+    floor = ceil = None 
+    
+    for i in range(0,n): 
+        if x <= arr[0]: 
+            ceil = arr[0] 
+            return (ceil, "floor doesn't exist in array")
+        
+        elif arr[i] <= x <= arr[i+1]: 
+            ceil = arr[i]
+            floor = arr[i+1]
+            return ceil , floor 
+        elif x >= arr[-1]: 
+            floor = arr[-1]
+            return (floor, "Ceil doesn't exist in array")
+            
+    return -1
+     
+ar1 = [1, 2, 8, 10, 10, 12, 19]     
+print(floor_ceil(ar1,0))
+print(floor_ceil(ar1,5))
+print(floor_ceil(ar1,20))
+print(floor_ceil(ar1,9))
+
 
 #Q3 ) Given an array of size N filled with numbers from 1 to N-1 in random order. The array has only one repetitive element. The task is to find the repetitive element.
 ### Code: 
