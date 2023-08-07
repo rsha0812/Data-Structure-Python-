@@ -100,6 +100,24 @@ def repetitive_element(arr):
 arr1 = [1, 3, 2, 5, 4]
 print(repetitive_element(arr1))
 
+## Code 2 : Easy Solution : 
+def repetitive_element(arr): 
+    arr = sorted(arr)
+    # print(arr)
+    n = len(arr)
+    for i in range(0,n-1): 
+        if arr[i] == arr[i+1]: 
+            return arr[i]     
+    return -1
+  
+arr1 = [1, 3, 2, 3, 4]    
+# arr1 = [1, 3, 2, 5, 4]  
+indx = repetitive_element(arr1)
+if indx != -1: 
+    print(f"The repetitive Element is {indx}")
+else: 
+    print("Given Array doesn't have any duplicate element.")
+
 #Q4 ) Given an array arr[] of integers. Find a peak element i.e. an element that is not smaller than its neighbors. 
 
 # Note: For corner elements, we need to consider only one neighbor. 
