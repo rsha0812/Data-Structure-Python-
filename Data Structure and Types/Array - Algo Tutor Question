@@ -53,3 +53,132 @@ def find_targ_indx(arr,trg):
 nums = [1,3,5,6]
 target = 7
 print(find_targ_indx(nums, target))
+
+### Q3) Sort Color 
+# Given an array num with n objects colored red,white,or blue, sort them in place so that objects of same color are adjacent . 
+# order - red(0), white(1),blue(2)
+
+### Code: 
+### a) Using Insertion Sort : 
+def color_insertion_sort(arr): 
+    for i in range(1,len(arr)): 
+        key = arr[i]
+        j = i-1
+        while j>=0 and key < arr[j]:
+            arr[j+1] = arr[j]
+            j -= 1
+        arr[j+1] = key 
+    return arr
+
+nums = [2,0,2,1,1,0]     
+print(color_insertion_sort(nums))
+
+
+### b) Using Quick Sort: 
+def color_partition(arr,low,high):
+    pivot = arr[high]
+    i = low - 1
+    for j in range(low,high): 
+        if arr[j] <= pivot: 
+            i = i+1
+            arr[i],arr[j] = arr[j],arr[i]
+    arr[i+1],arr[high] = arr[high],arr[i+1]
+    return i+1
+    
+def color_quick_sort(arr,low,high): 
+    if low<high: 
+        pi = color_partition(arr,low,high)
+        
+        ## Recursive call on left of pivot 
+        color_quick_sort(arr,low,pi-1)
+        
+        ## Recursive call on Right of pivot 
+        color_quick_sort(arr,pi+1,high)
+     
+    return arr 
+    
+nums = [2,0,2,1,1,0]   
+n = len(nums) 
+print(color_quick_sort(nums,0,n-1)) 
+
+
+### Q4) Find First and Last Position of Elements in Sorted Array
+# Given an array of integers nums sorted in non-decreasing order,find the starting and ending position of a given target value. 
+# If target is not found in teh array, return [-1,-1]
+# Write an algorithm with O(logn) runtime complexity. 
+
+### Code : Logic - Binary Search
+# for first index of element 
+# a) If (high >= low)
+# b) Calculate  mid = low + (high – low)/2;
+# c) If ((mid == 0 || x > arr[mid-1]) && arr[mid] == x)
+#         return mid;
+# d) Else if (x > arr[mid])
+#       return first(arr, (mid + 1), high, x, n);
+# e) Else
+#       return first(arr, low, (mid -1), x, n);
+# f) Otherwise return -1;
+
+def tgt_indx_frst_occ(arr,low,high,tgt,n): 
+    
+    if high >= low: 
+        mid = (high + low)//2
+        
+        if ((mid == 0 or (tgt > arr[mid-1])) and arr[mid] == tgt): 
+            return mid
+            
+        elif tgt > arr[mid]: 
+            return tgt_indx_frst_occ(arr,mid+1,high,tgt,n)
+            
+        else: 
+            return tgt_indx_frst_occ(arr,low,mid-1,tgt,n)
+            
+    return -1
+
+# for last index of element 
+# a) if (high >= low)
+# b) calculate mid = low + (high – low)/2;
+# c)if( ( mid == n-1 || x < arr[mid+1]) && arr[mid] == x )
+#         return mid;
+# d) else if(x < arr[mid])
+#       return last(arr, low, (mid -1), x, n);
+# e) else
+#       return last(arr, (mid + 1), high, x, n);      
+# f) otherwise return -1;
+
+def tgt_indx_last_occ(arr,low,high,tgt,n): 
+    
+    if high >= low: 
+        mid = (high + low)//2
+        
+        if ((mid == n-1 or (tgt < arr[mid+1])) and arr[mid] == tgt): 
+            return mid
+            
+        elif tgt < arr[mid]: 
+            return tgt_indx_last_occ(arr,low,mid-1,tgt,n)
+            
+        else: 
+            return tgt_indx_last_occ(arr,mid+1,high,tgt,n)
+            
+    return -1
+
+array = [5,7,7,8,8,8,9,10]
+target = 8
+n = len(array)
+print(f"First Occurence of Elemet is at index : {tgt_indx_frst_occ(array,0,n-1,target,n)}")
+print(f"Last Occurence of Elemet is at index : {tgt_indx_last_occ(array,0,n-1,target,n)}")
+
+
+### Q5) Length of Last Word
+# Given a string s consisting of words and spaces, return the length of last word in the string. 
+# Input : s = "Hello World"
+# Output : 5
+
+### Code: 
+def last_word_length(strng):
+    splt_strng = strng.split(" ")
+    last_word_len = len(splt_strng[-1])
+    print(f"Length of Last Word in string: {last_word_len}")
+    
+    
+last_word_length("Hello World")
