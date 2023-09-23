@@ -610,3 +610,65 @@ common_chars = find_common_characters(input_list)
 # Display the result
 print("Common characters in all strings:")
 print(common_chars) ## {"a"}
+
+########################## File Handling ########################
+'''
+Q1:Write a Python program to copy the contents of one text
+file into another.
+
+Steps : 
+1) Open the source file in read mode.
+2) Read the content of the source file.
+3) Open the destination file in write mode.
+4) Write the content to the destination file.
+'''
+# Code: 
+def copy_file_content(src_file,dest_file): 
+    try:    
+        with open(src_file,'r') as f: 
+            source_content = f.read()
+            
+            with open(dest_file,'w') as f2: 
+                f2.write(source_content)
+        print(f"Contents of '{src_file}' copied to '{dest_file}' successfully.")
+    
+    except FileNotFoundError:
+        print("File Not Found!! Please enter valid file names")
+        
+    except Exception as e: 
+        print(f"An error occurred: {e}")
+        
+copy_file_content("cat_file","dog_file")
+
+'''
+Q2 : Given a CSV file with student names and scores, find the
+student with the highest score.
+'''
+# Code: 
+import csv
+def find_highest_score(student_file):
+    highest_score = -1
+    top_student = None
+    try: 
+        with open(student_file,'r') as file: 
+            content = csv.DictReader(file)
+            for row in content: 
+                name = row['Name']
+                score = int(row['Score'])
+                
+                if score > highest_score:
+                        highest_score = score
+                        top_student = name
+                        
+        if top_student:
+            return f"{top_student} has the highest score: {highest_score}"
+        else:
+            return "No data found in the file."
+
+    except FileNotFoundError:
+        return "File not found. Please check the file name."
+    except Exception as e:
+        return f"An error occurred: {e}"
+
+result = find_highest_score("csv_file_name.csv")
+print(result)
