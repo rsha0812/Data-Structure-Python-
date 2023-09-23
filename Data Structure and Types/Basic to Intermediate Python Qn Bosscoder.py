@@ -672,3 +672,39 @@ def find_highest_score(student_file):
 
 result = find_highest_score("csv_file_name.csv")
 print(result)
+
+'''
+Q3 : Implement a program that reads a text file and counts the
+number of words and lines in it.
+'''
+# Code: 
+def count_words_lines(text_file): 
+    try: 
+        with open(text_file, 'r') as file:
+            # Read entire content of file and return as Single String.
+            text = file.read() 
+            # Split the text into words by whitespace
+            words = text.split()
+            word_count = len(words)
+    
+            # Split the text into lines
+            lines = text.splitlines()
+            line_count = len(lines)
+
+        return word_count, line_count
+        
+    except FileNotFoundError:
+        return None, None
+        
+    except Exception as e: 
+        return None, None
+        
+input_file = '_sample.txt'
+
+word_count, line_count = count_words_lines(input_file)
+
+if word_count is not None and line_count is not None: 
+    print(f"The Given file has total words : {word_count}")
+    print(f"The Given file has total lines : {line_count}")
+else: 
+    print("File not Found or Invalid!!")
