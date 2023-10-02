@@ -708,3 +708,176 @@ if word_count is not None and line_count is not None:
     print(f"The Given file has total lines : {line_count}")
 else: 
     print("File not Found or Invalid!!")
+
+
+'''
+Q4 :  Create a function that takes a list of sentences and writes them to a new text file, each on a new line.
+'''
+# Code: 
+def write_sentences_to_file(sentences, file_name):
+    try:
+        with open(file_name, 'w') as file:
+            for sentence in sentences:
+                file.write(sentence + '\n')
+        print(f"Sentences written to '{file_name}' successfully.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+# Example list of sentences
+sentences_list = [
+    "This is the first sentence.",
+    "Here is another sentence.",
+    "A third sentence goes here."
+]
+
+# Output file name
+output_file_name = "output_sentences.txt"
+
+# Call the function to write sentences to a new file
+write_sentences_to_file(sentences_list, output_file_name)
+
+'''
+Q5 :  Given a CSV file with employee details (name, age, salary), calculate the average salary of all employees.
+'''
+# Code: 
+import csv
+def average_salary(input_file): 
+    salary_sum = 0
+    total_average = 0
+    cnt = 0
+    try: 
+        with open(input_file,'r') as file: 
+            content = csv.DictReader(file)
+            for row in content: 
+                cnt += 1
+                salary_sum += int(row['Salary'])
+
+            total_average = salary_sum//cnt
+        return total_average
+    except FileNotFoundError: 
+        print("Invalid File")
+    except Exception as e: 
+        print(str(e))
+    
+csv_file = 'Employee.csv'
+print(average_salary(csv_file))
+
+'''
+Q6 :   Write a program that reads a CSV file and finds the total sales revenue for a specific product.
+'''
+# Code: 
+import csv
+def product_sales_revenue(input_file,prod): 
+    try: 
+        with open(input_file,'r') as file: 
+            content = csv.DictReader(file)
+            for row in content: 
+                if row['product'] == prod: 
+                    print(row['Revenue'])
+    except FileNotFoundError: 
+        print("Invalid File")
+    except Exception as e: 
+        print(str(e))
+    
+csv_file = 'Employee.csv'
+product_sales_revenue(csv_file,"TV")
+
+'''
+Q7 : Given a text file with a list of numbers, write a function that finds the sum of all numbers in the file.
+'''
+# Code: 
+import csv
+def sum_of_numbers(input_file): 
+    total = 0 
+    try: 
+        with open(input_file,'r') as file: 
+            for line in file: 
+                number = int(line.strip())
+                total += number
+            return total
+    except FileNotFoundError: 
+        print("Invalid File")
+    except Exception as e: 
+        print(str(e))
+    
+text_file = 'output_sentences.txt'
+print(sum_of_numbers(text_file))
+
+'''
+Q8 : Write a function that reads a JSON file and extracts specific information from it.
+'''
+# Code: 
+import json
+
+def extract_info_from_json(file_path, key):
+    try:
+        with open(file_path, 'r') as json_file:
+            data = json.load(json_file)
+            if key in data:
+                return data[key]
+            else:
+                return f"Key '{key}' not found in the JSON file."
+    except FileNotFoundError:
+        return f"File '{file_path}' not found."
+    except json.JSONDecodeError as e:
+        return f"Error decoding JSON: {str(e)}"
+
+# Example usage:
+file_path = 'example.json'
+desired_key = 'name'
+
+result = extract_info_from_json(file_path, desired_key)
+if isinstance(result, dict):
+    for k, v in result.items():
+        print(f"{k}: {v}")
+else:
+    print(result)
+    
+
+'''
+Q9 :  Given a CSV file with temperature data for each day of the week, find the average temperature for each day
+'''
+# Code: 
+import csv
+def calculate_average_temperature(csv_file_path):
+    # Initialize dictionaries to store daily temperature sums and counts
+    daily_temperatures = {
+        'Monday': {'sum': 0, 'count': 0},
+        'Tuesday': {'sum': 0, 'count': 0},
+        'Wednesday': {'sum': 0, 'count': 0},
+        'Thursday': {'sum': 0, 'count': 0},
+        'Friday': {'sum': 0, 'count': 0},
+        'Saturday': {'sum': 0, 'count': 0},
+        'Sunday': {'sum': 0, 'count': 0}
+    }
+
+    try:
+        with open(csv_file_path, 'r') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                day = row['Day']
+                temperature = float(row['Temperature'])
+
+                # Update the sum and count for the corresponding day
+                daily_temperatures[day]['sum'] += temperature
+                daily_temperatures[day]['count'] += 1
+
+        # Calculate the average temperature for each day
+        average_temperatures = {}
+        for day, data in daily_temperatures.items():
+            if data['count'] > 0:
+                average_temperatures[day] = data['sum'] / data['count']
+            else:
+                average_temperatures[day] = 0
+
+        return average_temperatures
+
+    except FileNotFoundError:
+        return f"File '{csv_file_path}' not found."
+
+# Example usage:
+csv_file_path = 'temperature_data.csv'
+average_temperatures = calculate_average_temperature(csv_file_path)
+
+for day, avg_temp in average_temperatures.items():
+    print(f"Average temperature for {day}: {avg_temp:.2f}°C")
